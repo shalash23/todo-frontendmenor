@@ -22,6 +22,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-design
 style-guide.md
 README-template.md
