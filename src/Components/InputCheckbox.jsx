@@ -7,7 +7,20 @@ import Box from "@mui/material/Box";
 const InputCheckbox = () => {
   return (
     <Box>
-      <Checkbox icon={<RadioButtonUnchecked />} checkedIcon={<CheckIcon />} />
+      <Checkbox
+        icon={<RadioButtonUnchecked />}
+        checkedIcon={
+          <CheckIcon
+            sx={{
+              background:
+                "linear-gradient(hsl(192, 100%, 67%),hsl(280, 87%, 65%))",
+              color: "blue",
+              borderRadius: "50%",
+              fontSize: 24,
+            }}
+          />
+        }
+      />
     </Box>
   );
 };
