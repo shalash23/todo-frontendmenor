@@ -21,6 +21,8 @@ const InputTodo = () => {
           variant="standard"
           sx={{
             width: "90%",
+            paddingX: 0.5,
+            paddingY: 1.5,
           }}
           placeholder="Create a new todo"
         />
