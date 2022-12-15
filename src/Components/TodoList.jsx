@@ -2,21 +2,43 @@ import React, { useEffect } from "react";
 import Todos from "./Todos";
 import todoJson from "../../data.json";
 import { Paper, Box, Typography } from "@mui/material";
-import TabsWrappedLabel from "./TabsWrappedLabel";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const TodoList = () => {
   // const { tasks } = todoJson;
-
-  const [tasks, setTasks] = React.useState([todoJson.tasks]);
+  const [isLoading,setIsLoading] = React.useState(true)
+  const [tasks, setTasks] = React.useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/tasks")
+    setIsLoading(true)
+    fetch("https://todo-frontendmentor-ead95-default-rtdb.firebaseio.com/tasks.json")
       .then((res) => res.json())
       .then((res) => {
-        setTasks(res);
+        const tasks = []
+        for (const key in res) {
+          const task = {
+            id: key,
+            ...res[key]
+          };
+          tasks.push(task)
+        }
+
+        setTasks(tasks);
+        setIsLoading(false)
         console.log(res);
       });
   }, []);
+
+  if (isLoading) {
+
+    return (
+      <>
+        <CircularProgress sx={{
+          marginLeft:8
+        }} />
+      </>
+    );
+  }
 
   return (
     <div>
@@ -28,7 +50,7 @@ const TodoList = () => {
         );
       })}
       <Paper
-        elevation={18}
+        elevation={12}
         // variant="outlined"
         square
         sx={{
@@ -48,9 +70,9 @@ const TodoList = () => {
           }}
         >
           <Typography
-            variant="body1"
+            variant="body2"
             component="p"
-            fontSize={14}
+            // fontSize={18}
             noWrap
             sx={{
               fontFamily: "Josefin Sans",

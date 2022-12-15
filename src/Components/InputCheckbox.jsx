@@ -8,14 +8,17 @@ const InputCheckbox = ({ completed, id, put }) => {
   console.log(put);
   const handleUpdate = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/tasks/${id}`, {
-        method: "PUT",
-        body: JSON.stringify({ ...put, completed: !completed }),
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      });
+      const response = await fetch(
+        `https://todo-frontendmentor-ead95-default-rtdb.firebaseio.com/tasks/:${id}`,
+        {
+          method: "PUT",
+          body: JSON.stringify({ ...put, completed: !completed }),
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      );
       console.log(response);
     } catch (err) {}
   };
@@ -31,7 +34,7 @@ const InputCheckbox = ({ completed, id, put }) => {
             sx={{
               background:
                 "linear-gradient(hsl(192, 100%, 67%),hsl(280, 87%, 65%))",
-              color: "blue",
+              color: "white",
               borderRadius: "50%",
               fontSize: 24,
             }}

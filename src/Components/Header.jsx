@@ -29,7 +29,7 @@ const Header = () => {
             component="h1"
             sx={{
               color: "white",
-              fontWeight: 500,
+              fontWeight: '700',
               letterSpacing: 12,
             }}
           >

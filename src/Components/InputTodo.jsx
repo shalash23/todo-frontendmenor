@@ -4,6 +4,8 @@ import InputCheckbox from "./InputCheckbox";
 const InputTodo = () => {
   const [data, setData] = React.useState({
     task: "",
+    completed:false
+    
   });
   const handleChange = (e) => {
     setData((prevData) => ({
@@ -11,17 +13,23 @@ const InputTodo = () => {
     }));
   };
 
-  const handleSubmit = async () => {
-    const response = await fetch("http://localhost:3000/tasks", {
-      method: "POST",
-      body: JSON.stringify({
-        data,
-      }),
-      headers: {
-        "Content-type": "application/json",
-        Accept: "application/json",
-      },
-    });
+  const handleSubmit = async (e) => {
+    const {task,completed} = data
+    e.preventDefault();
+    const response = await fetch(
+      "https://todo-frontendmentor-ead95-default-rtdb.firebaseio.com/tasks.json",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          task,
+          completed:'false',
+        }),
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+        },
+      }
+    );
   };
 
   return (
@@ -38,18 +46,22 @@ const InputTodo = () => {
         }}
       >
         <InputCheckbox />
-        <TextField
-          id="standard-basic"
-          variant="standard"
-          sx={{
-            width: "90%",
-            paddingX: 0.5,
-            paddingY: 1.5,
-          }}
-          placeholder="Create a new todo"
-          onChange={handleChange}
-          onSubmit={handleSubmit}
-        />
+        <form action="submit" onSubmit={handleSubmit} style={{
+          width:'100%'
+        }}>
+          <TextField
+            id="standard-basic"
+            variant="standard"
+            sx={{
+              width: "90%",
+              paddingX: 0.5,
+              paddingY: 1.5,
+            }}
+            placeholder="Create a new todo"
+            onChange={handleChange}
+            value={data.task}
+          />
+        </form>
       </Box>
     </Paper>
   );

@@ -5,7 +5,7 @@ import InputCheckbox from "./InputCheckbox";
 const Todos = ({ todo }) => {
   return (
     <Paper
-      elevation={18}
+      elevation={12}
       // variant="outlined"
       square
       sx={{
@@ -16,16 +16,17 @@ const Todos = ({ todo }) => {
         display: "flex",
         alignItems: "center",
         justifyContent: "flex-start",
+        marginBottom:0.15
       }}
     >
       <InputCheckbox completed={todo.completed} id={todo.id} put={todo} />
       <Typography
-        variant="body1"
+        variant="body2"
         component="p"
         sx={{
           color: "hsl(235, 19%, 35%)",
           fontFamily: "Josefin Sans",
-          fontWeight: "700",
+          fontWeight: "300",
           textDecoration: todo.completed ? "line-through" : "none",
         }}
       >
