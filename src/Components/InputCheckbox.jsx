@@ -1,32 +1,30 @@
-import React from "react";
+import React,{useContext} from "react";
 import Checkbox from "@mui/material/Checkbox";
 import CheckIcon from "@mui/icons-material/Check";
 import RadioButtonUnchecked from "@mui/icons-material/RadioButtonUnchecked";
 import Box from "@mui/material/Box";
+import { TodoContext } from "../TodoContext";
 
 const InputCheckbox = ({ completed, id, put }) => {
-  console.log(put);
-  const handleUpdate = async () => {
-    try {
-      const response = await fetch(
-        `https://todo-frontendmentor-ead95-default-rtdb.firebaseio.com/tasks/:${id}`,
-        {
-          method: "PUT",
-          body: JSON.stringify({ ...put, completed: !completed }),
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-        }
-      );
-      console.log(response);
-    } catch (err) {}
-  };
+  const [tasks, setTasks] = useContext(TodoContext)
+
+  const handleUpdate = (id) => {
+    const updatedTask = tasks.map(task => {
+      if (task.id === id) {
+        return {...task, completed:!task.completed}
+      }
+      return task
+    })
+    setTasks(updatedTask)
+ }
+
 
   return (
     <Box>
       <Checkbox
-        onClick={handleUpdate}
+        onClick={() => {
+          handleUpdate(id)
+        }}
         checked={completed}
         icon={<RadioButtonUnchecked />}
         checkedIcon={

@@ -1,42 +1,44 @@
 import React from "react";
 import { Box, Paper, TextField } from "@mui/material";
 import InputCheckbox from "./InputCheckbox";
+import { TodoContext } from "../TodoContext";
+
+
+
 const InputTodo = () => {
+  const [tasks, setTasks] = React.useContext(TodoContext)
+  
+
   const [data, setData] = React.useState({
+    id: (Math.floor(Math.random() * 200) * Date.now()).toString(),
     task: "",
-    completed:false
-    
+    completed: false,
   });
+
+  console.log(data,tasks)
   const handleChange = (e) => {
-    setData((prevData) => ({
+    setData((prevData) => ({...prevData,
       task: e.target.value,
     }));
   };
 
-  const handleSubmit = async (e) => {
-    const {task,completed} = data
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const response = await fetch(
-      "https://todo-frontendmentor-ead95-default-rtdb.firebaseio.com/tasks.json",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          task,
-          completed:'false',
-        }),
-        headers: {
-          "Content-type": "application/json",
-          Accept: "application/json",
-        },
-      }
-    );
-  };
+    setTasks(prevTasks => {
+     return [...prevTasks,data]
+    })
+    setData({
+      id: (Math.floor(Math.random() * 200)* Date.now()).toString(),
+      task: "",
+      completed: false,
+    });
+  }
 
   return (
     <Paper
       elevation={2}
       sx={{
-        mt: 8,
+        mt: 4,
       }}
     >
       <Box

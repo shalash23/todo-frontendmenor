@@ -1,43 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useContext} from "react";
 import Todos from "./Todos";
 import todoJson from "../../data.json";
 import { Paper, Box, Typography } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
+import { TodoContext } from "../TodoContext";
 
 const TodoList = () => {
-  // const { tasks } = todoJson;
-  const [isLoading,setIsLoading] = React.useState(true)
-  const [tasks, setTasks] = React.useState([]);
+  const [tasks, setTasks] = useContext(TodoContext)
+  
+  if (!tasks) {
 
-  useEffect(() => {
-    setIsLoading(true)
-    fetch("https://todo-frontendmentor-ead95-default-rtdb.firebaseio.com/tasks.json")
-      .then((res) => res.json())
-      .then((res) => {
-        const tasks = []
-        for (const key in res) {
-          const task = {
-            id: key,
-            ...res[key]
-          };
-          tasks.push(task)
-        }
-
-        setTasks(tasks);
-        setIsLoading(false)
-        console.log(res);
-      });
-  }, []);
-
-  if (isLoading) {
-
-    return (
-      <>
-        <CircularProgress sx={{
-          marginLeft:8
-        }} />
-      </>
-    );
+    return <div><CircularProgress/></div>
   }
 
   return (
