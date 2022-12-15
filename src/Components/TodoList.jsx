@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Todos from "./Todos";
 import todoJson from "../../data.json";
 import { Paper, Tabs, Tab, Box } from "@mui/material";
 import TabsWrappedLabel from "./TabsWrappedLabel";
 
 const TodoList = () => {
-  const { tasks } = todoJson;
+  // const { tasks } = todoJson;
+
+  const [tasks, setTasks] = React.useState([todoJson.tasks]);
+
+  useEffect(() => {
+    fetch("http://localhost:4000/tasks")
+      .then((res) => res.json())
+      .then((res) => {
+        setTasks(res);
+        console.log(res);
+      });
+  }, []);
 
   return (
     <div>
