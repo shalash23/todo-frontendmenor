@@ -4,10 +4,12 @@ import CheckIcon from "@mui/icons-material/Check";
 import RadioButtonUnchecked from "@mui/icons-material/RadioButtonUnchecked";
 import Box from "@mui/material/Box";
 
-const InputCheckbox = () => {
+const InputCheckbox = ({ completed }) => {
+  console.log(completed);
   return (
     <Box>
       <Checkbox
+        checked={completed}
         icon={<RadioButtonUnchecked />}
         checkedIcon={
           <CheckIcon
