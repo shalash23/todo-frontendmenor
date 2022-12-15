@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Todos from "./Todos";
 import todoJson from "../../data.json";
-import { Paper, Tabs, Tab, Box } from "@mui/material";
+import { Paper, Box, Typography } from "@mui/material";
 import TabsWrappedLabel from "./TabsWrappedLabel";
 
 const TodoList = () => {
@@ -10,7 +10,7 @@ const TodoList = () => {
   const [tasks, setTasks] = React.useState([todoJson.tasks]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/tasks")
+    fetch("http://localhost:3000/tasks")
       .then((res) => res.json())
       .then((res) => {
         setTasks(res);
@@ -39,8 +39,40 @@ const TodoList = () => {
           justifyContent: "flex-start",
         }}
       >
-        <Box>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <Typography
+            variant="body1"
+            component="p"
+            fontSize={14}
+            noWrap
+            paddingX={2}
+            sx={{
+              fontFamily: "Josefin Sans",
+              fontWeight: "400",
+            }}
+          >
+            5 items left
+          </Typography>
           <TabsWrappedLabel />
+          <Typography
+            variant="body1"
+            component="p"
+            fontSize={13}
+            noWrap
+            paddingX={3}
+            sx={{
+              fontFamily: "Josefin Sans",
+              fontWeight: "400",
+            }}
+          >
+            Clear Completed
+          </Typography>
         </Box>
       </Paper>
     </div>

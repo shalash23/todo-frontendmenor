@@ -11,15 +11,48 @@ export default function TabsWrappedLabel() {
   };
 
   return (
-    <Box sx={{ width: "100%", ml: 8 }}>
+    <Box sx={{ width: "auto" }}>
       <Tabs
         value={value}
         onChange={handleChange}
         aria-label="wrapped label tabs"
+        indicatorColor="none"
+        variant="standard"
       >
-        <Tab value="All" label="All" />
-        <Tab value="Active" label="Active" />
-        <Tab value="Completed" label="Completed" />
+        <Tab
+          value="All"
+          label="All"
+          sx={{
+            fontSize: 15,
+            textTransform: "none",
+            fontFamily: "Josefin Sans",
+            fontWeight: "700",
+            color: "hsl(235, 19%, 35%)",
+          }}
+        />
+        <Tab
+          value="Active"
+          label="Active"
+          sx={{
+            fontSize: 15,
+            textTransform: "none",
+            fontFamily: "Josefin Sans",
+            fontWeight: "700",
+            color: "hsl(235, 19%, 35%)",
+            pl: 0,
+          }}
+        />
+        <Tab
+          value="Completed"
+          label="Completed"
+          sx={{
+            fontSize: 15,
+            textTransform: "none",
+            fontFamily: "Josefin Sans",
+            fontWeight: "700",
+            color: "hsl(235, 19%, 35%)",
+          }}
+        />
       </Tabs>
     </Box>
   );
