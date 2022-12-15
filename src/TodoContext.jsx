@@ -1,4 +1,4 @@
-import data from "../data.json";
+import data from "../data";
 import { createContext, useState } from "react";
 
 export const TodoContext = createContext();

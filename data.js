@@ -1,4 +1,4 @@
- [
+const data = [
     {
       "id": "1",
       "task": "Complete online JavaScript course",
@@ -29,5 +29,6 @@
       "task": "Complete Todo App on Frontend Mentor",
       "completed": false
     }
-  
   ]
+ 
+export default data

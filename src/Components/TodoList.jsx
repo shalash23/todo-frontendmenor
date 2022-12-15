@@ -1,6 +1,6 @@
 import React, { useContext} from "react";
 import Todos from "./Todos";
-import todoJson from "../../data.json";
+import todoJson from "../../data";
 import { Paper, Box, Typography } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import { TodoContext } from "../TodoContext";

@@ -8,6 +8,7 @@ import { ThemeProvider, createTheme, useTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { useMediaQuery } from "@mui/material";
 import { TodoContextProvider } from "./TodoContext";
+import { ThemeModeProvider } from "./ThemeContext";
 
 const darkTheme = createTheme({
   palette: {
@@ -21,35 +22,37 @@ const App = () => {
   const matches = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <ThemeProvider theme={darkTheme}>
-      <TodoContextProvider>
-        <CssBaseline />
-        <Container
-          maxWidth={false}
-          sx={{
-            minHeight: "100vh",
-            backgroundImage: matches
-              ? `url(${images.bgMobileLight})`
-              : `url(${images.bgDesktopLight})`,
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "100% 40%",
-            backgroundColor: "white",
-          }}
-        >
-          <Box>
-            <Header />
-            <Container
-              maxWidth={"sm"}
-              sx={{
-                paddingTop: 1,
-              }}
-            >
-              <TodoList />
-            </Container>
-          </Box>
-        </Container>
-      </TodoContextProvider>
-    </ThemeProvider>
+    <ThemeModeProvider>
+      <ThemeProvider theme={darkTheme}>
+        <TodoContextProvider>
+          <CssBaseline />
+          <Container
+            maxWidth={false}
+            sx={{
+              minHeight: "100vh",
+              backgroundImage: matches
+                ? `url(${images.bgMobileLight})`
+                : `url(${images.bgDesktopLight})`,
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "100% 40%",
+              backgroundColor: "white",
+            }}
+          >
+            <Box>
+              <Header />
+              <Container
+                maxWidth={"sm"}
+                sx={{
+                  paddingTop: 1,
+                }}
+              >
+                <TodoList />
+              </Container>
+            </Box>
+          </Container>
+        </TodoContextProvider>
+      </ThemeProvider>
+    </ThemeModeProvider>
   );
 };
 
