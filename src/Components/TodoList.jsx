@@ -3,9 +3,11 @@ import Todos from "./Todos";
 import todoJson from "../../data.json";
 
 const TodoList = () => {
+  const { tasks } = todoJson;
+
   return (
     <div>
-      {todoJson.map((todo) => {
+      {tasks.map((todo) => {
         return (
           <div key={todo.id}>
             <Todos todo={todo} />

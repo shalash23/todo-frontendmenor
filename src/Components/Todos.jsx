@@ -6,7 +6,7 @@ const Todos = ({ todo }) => {
   return (
     <Paper
       elevation={12}
-      variant="outlined"
+      // variant="outlined"
       square
       sx={{
         width: "100%",

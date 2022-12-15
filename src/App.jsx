@@ -4,11 +4,20 @@ import "./App.css";
 import { Container, Box } from "@mui/material";
 import Todos from "./Components/Todos";
 import TodoList from "./Components/TodoList";
+import images from "./assets/index";
 
 const App = () => {
   return (
-    <main>
-      <Container>
+    <Container
+      maxWidth={false}
+      sx={{
+        minHeight: "100vh",
+        backgroundImage: `url(${images.bgMobileLight})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "100% 50%",
+      }}
+    >
+      <Box>
         <Header />
         <Container
           maxWidth={"sm"}
@@ -18,8 +27,8 @@ const App = () => {
         >
           <TodoList />
         </Container>
-      </Container>
-    </main>
+      </Box>
+    </Container>
   );
 };
 
