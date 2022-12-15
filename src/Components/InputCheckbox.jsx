@@ -4,11 +4,26 @@ import CheckIcon from "@mui/icons-material/Check";
 import RadioButtonUnchecked from "@mui/icons-material/RadioButtonUnchecked";
 import Box from "@mui/material/Box";
 
-const InputCheckbox = ({ completed }) => {
-  console.log(completed);
+const InputCheckbox = ({ completed, id, put }) => {
+  console.log(put);
+  const handleUpdate = async () => {
+    try {
+      const response = await fetch(`http://localhost:3000/tasks/${id}`, {
+        method: "PUT",
+        body: JSON.stringify({ ...put, completed: !completed }),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      });
+      console.log(response);
+    } catch (err) {}
+  };
+
   return (
     <Box>
       <Checkbox
+        onClick={handleUpdate}
         checked={completed}
         icon={<RadioButtonUnchecked />}
         checkedIcon={

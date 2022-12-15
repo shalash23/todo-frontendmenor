@@ -23,7 +23,7 @@ const TodoList = () => {
       {tasks.map((todo) => {
         return (
           <div key={todo.id}>
-            <Todos todo={todo} />
+            <Todos todo={todo} key={todo.tasks} />
           </div>
         );
       })}
@@ -43,7 +43,8 @@ const TodoList = () => {
           sx={{
             display: "flex",
             alignItems: "center",
-            justifyContent: "space-between",
+            justifyContent: "space-around",
+            width: "100%",
           }}
         >
           <Typography
@@ -51,24 +52,23 @@ const TodoList = () => {
             component="p"
             fontSize={14}
             noWrap
-            paddingX={2}
             sx={{
               fontFamily: "Josefin Sans",
               fontWeight: "400",
+              color: "hsl(233, 11%, 84%)",
             }}
           >
             5 items left
           </Typography>
-          <TabsWrappedLabel />
           <Typography
             variant="body1"
             component="p"
             fontSize={13}
             noWrap
-            paddingX={3}
             sx={{
               fontFamily: "Josefin Sans",
               fontWeight: "400",
+              color: "hsl(233, 11%, 84%)",
             }}
           >
             Clear Completed

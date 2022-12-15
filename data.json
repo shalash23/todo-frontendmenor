@@ -7,18 +7,18 @@
     },
     {
       "id": "2",
-      "task": "Jog around the park 3x",
-      "completed": false
+      "completed": false,
+      "task": "Jog around the park 3x"
     },
     {
+      "completed": false,
       "id": "3",
-      "task": "10 minutes meditation",
-      "completed": false
+      "task": "10 minutes Meditation"
     },
     {
+      "completed": false,
       "id": "4",
-      "task": "Read for 1 hour",
-      "completed": false
+      "task": "Read for 1 Hour"
     },
     {
       "id": "5",
