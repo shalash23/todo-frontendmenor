@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useContext, useState } from "react";
 import Header from "./Components/Header";
 import "./App.css";
-import { Container, Box } from "@mui/material";
+import { Container, Box, Button } from "@mui/material";
 import TodoList from "./Components/TodoList";
 import images from "./assets/index";
 import { ThemeProvider, createTheme, useTheme } from "@mui/material/styles";
@@ -13,7 +13,6 @@ import { ThemeModeProvider } from "./ThemeContext";
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
-    type: "dark",
     primary: {
       main: "#3f51b5",
     },
@@ -36,7 +35,7 @@ const darkTheme = createTheme({
     },
   },
   typography: {
-    fontSize: 14,
+    fontSize: 18,
     fontFamily: "Josefin Sans",
     fontWeightLight: 400,
     fontWeightRegular: 500,
@@ -44,32 +43,77 @@ const darkTheme = createTheme({
     htmlFontSize: 18,
   },
 });
-console.log(darkTheme);
+
+const lightTheme = createTheme({
+  palette: {
+    mode: "light",
+    primary: {
+      main: "hsl(220, 98%, 61%)",
+    },
+    secondary: {
+      main: "#f50057",
+    },
+    background: {
+      default: "hsl(0, 0%, 98%)",
+    },
+    text: {
+      secondary: "hsl(236, 9%, 61%)",
+      primary: "hsl(235, 19%, 35%)",
+    },
+  },
+  typography: {
+    fontFamily: "Josefin Sans",
+    fontSize: 18,
+    htmlFontSize: 18,
+  },
+});
 
 const App = () => {
+  const [assignTheme,setAssignTheme] = useState(lightTheme)
+
+
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("sm"));
 
+  const changeTheme = (e) => {
+    setAssignTheme(prevTheme => prevTheme === lightTheme ? darkTheme : lightTheme)
+  }
+  
+  const backgroundImageChanger = (theme, matches) => {
+    if (matches && theme === lightTheme) {
+      return `url(${images.bgMobileLight})`;
+    }
+    if (matches && theme === darkTheme) {
+      return `url(${images.bgMobileDark})`;
+    }
+    if (!matches && theme === lightTheme) {
+      return `url(${images.bgDesktopLight})`
+    }
+    if (!matches && theme === darkTheme) {
+      return `url(${images.bgDesktopDark})`
+    }
+  }
+  // 
+  //  matches
+  //               ? `url(${images.bgMobileLight})`
+  //               : `url(${images.bgDesktopLight})`
+
   return (
     <ThemeModeProvider>
-      <ThemeProvider theme={darkTheme}>
+      <ThemeProvider theme={assignTheme}>
         <TodoContextProvider>
           <CssBaseline />
           <Container
             maxWidth={false}
             sx={{
               minHeight: "100vh",
-              backgroundImage: matches
-                ? `url(${images.bgMobileLight})`
-                : `url(${images.bgDesktopLight})`,
+              backgroundImage: backgroundImageChanger,
               backgroundRepeat: "no-repeat",
               backgroundSize: "100% 30%",
-              backgroundColor:
-                darkTheme.palette.background.default
             }}
           >
             <Box>
-              <Header />
+              <Header changeTheme={changeTheme} />
               <Container
                 maxWidth={"sm"}
                 sx={{

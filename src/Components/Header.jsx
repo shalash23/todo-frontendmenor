@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Container, Paper, Box, Typography } from "@mui/material";
 import images from "../assets/index";
 import InputTodo from "./InputTodo";
 import "./Header.css";
-const Header = () => {
+import { DefaultTheme } from "../ThemeContext";
+const Header = ({changeTheme}) => {
+  const [mode, setMode] = useContext(DefaultTheme)
+  console.log(mode)
+
   return (
     <Container
       maxWidth={"sm"}
       sx={{
-        paddingTop: 10,
+        paddingTop: 8,
       }}
     >
       <Paper
@@ -25,17 +29,16 @@ const Header = () => {
           }}
         >
           <Typography
-            variant="h3"
+            variant="h4"
             component="h1"
             sx={{
-              color: "white",
-              fontWeight: '700',
+              color:'hsl(0, 0%, 98%)',
               letterSpacing: 12,
             }}
           >
             TODO
           </Typography>
-          <img src={images.iconMoon} alt="" />
+          <img src={images.iconMoon} alt="" onClick={changeTheme}/>
         </Box>
         <InputTodo />
       </Paper>

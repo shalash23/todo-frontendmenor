@@ -6,6 +6,6 @@ export const ThemeModeProvider = ({ children }) => {
     const [themeMode, setThemeMode] = useState('light');
 
     return (
-        <DefaultTheme.Provider value={themeMode}>{children}</DefaultTheme.Provider>
+        <DefaultTheme.Provider value={[themeMode,setThemeMode]}>{children}</DefaultTheme.Provider>
     )
 };

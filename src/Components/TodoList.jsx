@@ -23,7 +23,7 @@ const TodoList = () => {
         );
       })}
       <Paper
-        elevation={12}
+        // elevation={12}
         // variant="outlined"
         square
         sx={{
@@ -47,24 +47,23 @@ const TodoList = () => {
             component="p"
             // fontSize={18}
             noWrap
-            sx={{
-              fontFamily: "Josefin Sans",
-              fontWeight: "400",
-              color: "hsl(233, 11%, 84%)",
-            }}
+            // sx={{
+            //   fontFamily: "Josefin Sans",
+            //   fontWeight: "400",
+            //   color: "hsl(233, 11%, 84%)",
+            // }}
           >
             5 items left
           </Typography>
           <Typography
-            variant="body1"
+            variant="body2"
             component="p"
-            fontSize={13}
             noWrap
-            sx={{
-              fontFamily: "Josefin Sans",
-              fontWeight: "400",
-              color: "hsl(233, 11%, 84%)",
-            }}
+            // sx={{
+            //   fontFamily: "Josefin Sans",
+            //   fontWeight: "400",
+            //   color: "hsl(233, 11%, 84%)",
+            // }}
           >
             Clear Completed
           </Typography>
