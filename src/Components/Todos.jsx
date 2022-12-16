@@ -25,6 +25,7 @@ const Todos = ({ todo }) => {
         component="p"
         sx={{
           textDecoration: todo.completed ? "line-through" : "none",
+          color: todo.completed ? 'hsl(233, 14%, 35%)' : 'inherit'
         }}
       >
         {todo.task}

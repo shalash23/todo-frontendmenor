@@ -43,7 +43,7 @@ const TodoList = () => {
           }}
         >
           <Typography
-            variant="body2"
+            variant="subtitle2"
             component="p"
             // fontSize={18}
             noWrap
@@ -56,7 +56,7 @@ const TodoList = () => {
             5 items left
           </Typography>
           <Typography
-            variant="body2"
+            variant="subtitle2"
             component="p"
             noWrap
             // sx={{

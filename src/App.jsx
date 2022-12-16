@@ -41,6 +41,9 @@ const darkTheme = createTheme({
     fontWeightRegular: 500,
     fontWeightMedium: 600,
     htmlFontSize: 18,
+    subtitle2: {
+      color: " hsl(236, 33%, 92%)",
+    },
   },
 });
 
@@ -62,34 +65,40 @@ const lightTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: "Josefin Sans",
     fontSize: 18,
+    fontFamily: "Josefin Sans",
+    fontWeightLight: 400,
+    fontWeightRegular: 500,
+    fontWeightMedium: 600,
     htmlFontSize: 18,
-  },
+    subtitle2: {
+      color: "hsl(233, 14%, 35%)",
+    },
+  }
 });
 
 const App = () => {
   const [assignTheme,setAssignTheme] = useState(lightTheme)
 
 
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down("sm"));
+   const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down("md"));
 
   const changeTheme = (e) => {
     setAssignTheme(prevTheme => prevTheme === lightTheme ? darkTheme : lightTheme)
   }
   
-  const backgroundImageChanger = (theme, matches) => {
-    if (matches && theme === lightTheme) {
+  const backgroundImageChanger = () => {
+    if (matches && assignTheme === lightTheme) {
       return `url(${images.bgMobileLight})`;
     }
-    if (matches && theme === darkTheme) {
+    if (matches && assignTheme === darkTheme) {
       return `url(${images.bgMobileDark})`;
     }
-    if (!matches && theme === lightTheme) {
+    if (!matches && assignTheme === lightTheme) {
       return `url(${images.bgDesktopLight})`
     }
-    if (!matches && theme === darkTheme) {
+    if (!matches && assignTheme === darkTheme) {
       return `url(${images.bgDesktopDark})`
     }
   }
@@ -107,7 +116,7 @@ const App = () => {
             maxWidth={false}
             sx={{
               minHeight: "100vh",
-              backgroundImage: backgroundImageChanger,
+              backgroundImage: backgroundImageChanger(matches,assignTheme),
               backgroundRepeat: "no-repeat",
               backgroundSize: "100% 30%",
             }}
