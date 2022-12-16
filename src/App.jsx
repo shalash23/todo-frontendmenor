@@ -42,7 +42,7 @@ const darkTheme = createTheme({
     fontWeightMedium: 600,
     htmlFontSize: 18,
     subtitle2: {
-      color: " hsl(236, 33%, 92%)",
+      color: "hsl(233, 14%, 35%)",
     },
   },
 });
@@ -72,9 +72,9 @@ const lightTheme = createTheme({
     fontWeightMedium: 600,
     htmlFontSize: 18,
     subtitle2: {
-      color: "hsl(233, 14%, 35%)",
+      color: "hsl(234, 11%, 52%)",
     },
-  }
+  },
 });
 
 const App = () => {

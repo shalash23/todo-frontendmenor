@@ -18,6 +18,7 @@ export default function TabsWrappedLabel() {
         aria-label="wrapped label tabs"
         indicatorColor="none"
         variant="standard"
+        centered
       >
         <Tab
           value="All"

@@ -1,27 +1,33 @@
-import React, { useContext} from "react";
+import React, { useContext } from "react";
 import Todos from "./Todos";
-import todoJson from "../../data";
 import { Paper, Box, Typography } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import { TodoContext } from "../TodoContext";
 
+import TabsWrappedLabel from "./TabsWrappedLabel";
 const TodoList = () => {
-  const [tasks, setTasks] = useContext(TodoContext)
-  
-  if (!tasks) {
+  const [tasks, setTasks] = useContext(TodoContext);
 
-    return <div><CircularProgress/></div>
+  if (!tasks) {
+    return (
+      <div>
+        <CircularProgress />
+      </div>
+    );
   }
 
   return (
-    <div>
-      {tasks.map((todo) => {
-        return (
-          <div key={todo.id}>
-            <Todos todo={todo} key={todo.tasks} />
-          </div>
-        );
-      })}
+    <div >
+        {tasks.map((todo) => {
+          return (
+            <div
+           
+              key={todo.id}
+            >
+              <Todos todo={todo} key={todo.tasks} />
+            </div>
+          );
+        })}
       <Paper
         // elevation={12}
         // variant="outlined"
@@ -69,6 +75,12 @@ const TodoList = () => {
           </Typography>
         </Box>
       </Paper>
+      <Box marginTop={3}>
+
+      <TabsWrappedLabel/>
+      </Box>
+
+      
     </div>
   );
 };
