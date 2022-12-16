@@ -8,7 +8,7 @@ const Header = () => {
     <Container
       maxWidth={"sm"}
       sx={{
-        paddingTop: 6,
+        paddingTop: 10,
       }}
     >
       <Paper
