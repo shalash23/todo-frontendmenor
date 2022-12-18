@@ -1,17 +1,26 @@
 import * as React from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Box from "@mui/material/Box";
+import { Box } from "@mui/material";
+import { TodoContextUpdatedState } from "../TodoContext";
+
 
 export default function TabsWrappedLabel() {
-  const [value, setValue] = React.useState("All");
+  const [value,setValue] = React.useContext(TodoContextUpdatedState);
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    setValue(newValue)
+   
+    
   };
 
   return (
-    <Box sx={{ width: "auto" }}>
+    <Box sx={{
+      width: "auto",
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent:'center',
+    }}>
       <Tabs
         value={value}
         onChange={handleChange}

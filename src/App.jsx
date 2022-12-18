@@ -129,7 +129,7 @@ const App = () => {
                   paddingTop: 1,
                 }}
               >
-                <TodoList />
+                <TodoList matches={matches}/>
               </Container>
             </Box>
           </Container>
